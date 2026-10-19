@@ -156,7 +156,7 @@ Rotas da API:
 - **Pagamento (RF10 a RF14, RN07):** PIX mostra a chave; boleto gera a linha digitável; cartão guarda apenas os quatro últimos dígitos (RNF03).
 - **Conclusão (RF15, RF18, RN03, RN08):** ao confirmar, o pedido vira "concluída", o comprovante é emitido uma única vez e o veículo sai do estoque.
 - **Estoque administrativo (RF16, RN10):** o administrador cadastra, edita e remove veículos. Um veículo que já tem pedido não pode ser removido (409), para preservar o histórico de vendas.
-- **Cancelamento de venda (RN13):** só o administrador cancela, e só uma venda já concluída (a API recusa com 409 fora desse caso). Ao cancelar, o veículo volta a ficar disponível no estoque e some das métricas de faturamento do relatório.
+- **Cancelamento de venda (RN13):** só o administrador cancela, e só uma venda já concluída (a API recusa com 409 fora desse caso). Ao cancelar, o veículo volta a ficar disponível no estoque e some das métricas de faturamento do relatório. A tela "Compras" (`/minhas-compras`) mostra os pedidos de **todos os clientes** quando quem está logado é o administrador — com busca por veículo ou cliente — e não só os próprios pedidos (que é o que o cliente comum vê).
 - **Histórico (RN11):** toda mudança de status é registrada com data e hora.
 
 ## 13. Dificuldades encontradas
