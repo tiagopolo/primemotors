@@ -51,6 +51,17 @@ export default function Relatorios() {
     .sort((a, b) => b.preco - a.preco)
     .slice(0, 3);
 
+  // RN08 — a venda só conta como registrada quando o comprovante é emitido,
+  // na conclusão; ordenar por essa data (e não por quando o pedido começou)
+  // evita mostrar as vendas fora da ordem em que elas realmente aconteceram.
+  const ultimasVendas = [...concluidas]
+    .sort((a, b) => {
+      const dataA = a.comprovante?.emitidoEm ?? a.criadaEm;
+      const dataB = b.comprovante?.emitidoEm ?? b.criadaEm;
+      return dataB.localeCompare(dataA);
+    })
+    .slice(0, 6);
+
   function exportarCsv() {
     const linhas = [
       ["codigo", "veiculo", "total", "modalidade", "status", "data"],
@@ -159,21 +170,21 @@ export default function Relatorios() {
         <h2 className="mb-3 text-xs font-bold uppercase tracking-wide text-[color:var(--pm-muted)]">
           Últimas vendas registradas
         </h2>
-        {compras.length === 0 ? (
+        {ultimasVendas.length === 0 ? (
           <p className="text-xs text-[color:var(--pm-muted)]">
-            Nenhuma compra registrada ainda. Conclua uma compra para ver os dados
+            Nenhuma venda concluída ainda. Conclua uma compra para ver os dados
             aqui.
           </p>
         ) : (
           <ul className="space-y-2 text-xs">
-            {compras.slice(0, 6).map((c) => (
+            {ultimasVendas.map((c) => (
               <li key={c.id} className="flex items-center gap-2">
                 <FileText size={14} className="text-[color:var(--pm-primary-2)]" />
                 <span className="min-w-0 flex-1 truncate font-semibold">
                   {c.veiculoDescricao}
                 </span>
                 <span className="text-[color:var(--pm-muted)]">
-                  {dataHoraBR(c.criadaEm)}
+                  {dataHoraBR(c.comprovante?.emitidoEm ?? c.criadaEm)}
                 </span>
                 <span className="font-bold text-[color:var(--pm-primary-2)]">
                   {moeda(c.valorTotal)}
