@@ -3,8 +3,9 @@
 /** RF15 / RN08 — Comprovante gerado após a confirmação do pagamento. */
 
 import Link from "next/link";
-import { use } from "react";
+import { use, useState } from "react";
 import {
+  AlertTriangle,
   CalendarClock,
   CheckCircle2,
   CreditCard,
@@ -12,6 +13,7 @@ import {
   MapPin,
   Printer,
   Store,
+  XCircle,
 } from "lucide-react";
 import { useApp } from "@/lib/store";
 import { dataBR, dataHoraBR, moedaCheia } from "@/lib/utils";
@@ -22,6 +24,7 @@ const ROTULO_STATUS: Record<string, string> = {
   paga: "Paga",
   agendada: "Agendada",
   concluida: "Concluída",
+  cancelada: "Cancelada",
 };
 
 export default function ComprovantePage({
@@ -30,8 +33,10 @@ export default function ComprovantePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const { buscarCompra } = useApp();
+  const { usuario, buscarCompra, cancelarVenda } = useApp();
   const compra = buscarCompra(id);
+  const [cancelando, setCancelando] = useState(false);
+  const [erro, setErro] = useState("");
 
   if (!compra) {
     return (
@@ -41,22 +46,42 @@ export default function ComprovantePage({
     );
   }
 
+  async function cancelar() {
+    if (!confirm("Cancelar esta venda? O veículo volta para o estoque.")) return;
+    setErro("");
+    setCancelando(true);
+    const r = await cancelarVenda(compra!.id);
+    setCancelando(false);
+    if (!r.ok) setErro(r.erro);
+  }
+
   return (
     <>
       <div className="pm-card mb-4 p-6 text-center">
-        <CheckCircle2
-          size={48}
-          className={`mx-auto mb-3 ${
-            compra.status === "concluida"
-              ? "text-[color:var(--pm-success)]"
-              : "text-[color:var(--pm-primary-2)]"
-          }`}
-        />
+        {compra.status === "cancelada" ? (
+          <XCircle size={48} className="mx-auto mb-3 text-[color:var(--pm-danger)]" />
+        ) : (
+          <CheckCircle2
+            size={48}
+            className={`mx-auto mb-3 ${
+              compra.status === "concluida"
+                ? "text-[color:var(--pm-success)]"
+                : "text-[color:var(--pm-primary-2)]"
+            }`}
+          />
+        )}
         <h1 className="text-xl font-bold">
-          {compra.status === "concluida"
-            ? "Compra confirmada!"
-            : `Pedido ${ROTULO_STATUS[compra.status] ?? compra.status}`}
+          {compra.status === "cancelada"
+            ? "Venda cancelada"
+            : compra.status === "concluida"
+              ? "Compra confirmada!"
+              : `Pedido ${ROTULO_STATUS[compra.status] ?? compra.status}`}
         </h1>
+        {compra.status === "cancelada" && (
+          <p className="mt-1 text-xs text-[color:var(--pm-muted)]">
+            O veículo voltou a ficar disponível no estoque.
+          </p>
+        )}
         {compra.comprovante ? (
           <p className="mt-1 text-xs text-[color:var(--pm-muted)]">
             Comprovante{" "}
@@ -176,6 +201,24 @@ export default function ComprovantePage({
           ))}
         </ol>
       </div>
+
+      {erro && (
+        <p className="pm-card mb-4 p-3 text-center text-xs font-semibold text-[color:var(--pm-danger)]">
+          {erro}
+        </p>
+      )}
+
+      {/* Só o administrador cancela, e só uma venda já concluída */}
+      {usuario?.perfil === "admin" && compra.status === "concluida" && (
+        <button
+          onClick={cancelar}
+          disabled={cancelando}
+          className="pm-btn pm-btn-ghost mb-2 w-full text-[color:var(--pm-danger)]"
+        >
+          <AlertTriangle size={16} />
+          {cancelando ? "Cancelando…" : "Cancelar venda"}
+        </button>
+      )}
 
       <div className="grid grid-cols-2 gap-2 pb-4">
         <button onClick={() => window.print()} className="pm-btn pm-btn-ghost">

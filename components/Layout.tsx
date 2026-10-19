@@ -28,6 +28,7 @@ const ROTULO_STATUS: Record<StatusCompra, string> = {
   paga: "com pagamento confirmado",
   agendada: "agendado",
   concluida: "concluído",
+  cancelada: "cancelado",
 };
 
 const NAV = [

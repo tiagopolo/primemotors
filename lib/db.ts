@@ -206,6 +206,25 @@ export const veiculos = {
     );
     await gravarArquivo(banco);
   },
+
+  /**
+   * Cancelamento de venda (pedido do professor): o veículo volta a ficar
+   * disponível no estoque e perde a data de venda.
+   */
+  async devolverAoEstoque(id: string): Promise<void> {
+    if (USANDO_POSTGRES) {
+      await executar(
+        "UPDATE veiculo SET status = 'disponivel', vendido_em = NULL WHERE id = $1",
+        [id],
+      );
+      return;
+    }
+    const banco = await lerArquivo();
+    banco.veiculos = banco.veiculos.map((v) =>
+      v.id === id ? { ...v, status: "disponivel", vendidoEm: undefined } : v,
+    );
+    await gravarArquivo(banco);
+  },
 };
 
 /* ------------------------------------------------------------------ */

@@ -67,7 +67,9 @@ export type StatusCompra =
   | "aguardando_pagamento"
   | "paga"
   | "agendada"
-  | "concluida";
+  | "concluida"
+  /** venda concluída que o administrador cancelou; o veículo volta ao estoque */
+  | "cancelada";
 
 /** RF07, RN04, RN12 */
 export interface Entrega {

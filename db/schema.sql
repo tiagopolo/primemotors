@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS compra (
   veiculo_id  VARCHAR(40)   NOT NULL REFERENCES veiculo (id),
   valor_total DECIMAL(12,2) NOT NULL,
   status      VARCHAR(20)   NOT NULL DEFAULT 'iniciada'
-              CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida')),
+              CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida', 'cancelada')),
   -- JSONB (não JSON): o Postgres guarda em formato binário indexável; é o
   -- tipo recomendado pelo próprio Supabase para colunas de JSON.
   dados       JSONB         NOT NULL,
@@ -171,9 +171,19 @@ CREATE TABLE IF NOT EXISTS historico_compra (
   id        INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   compra_id VARCHAR(40) NOT NULL REFERENCES compra (id) ON DELETE CASCADE,
   status    VARCHAR(20) NOT NULL
-            CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida')),
+            CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida', 'cancelada')),
   em        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Se o banco já existia antes do status "cancelada" (cancelamento de venda,
+-- melhoria pedida pelo professor), estes comandos atualizam as duas
+-- restrições sem apagar nenhum dado.
+ALTER TABLE compra DROP CONSTRAINT IF EXISTS compra_status_check;
+ALTER TABLE compra ADD CONSTRAINT compra_status_check
+  CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida', 'cancelada'));
+ALTER TABLE historico_compra DROP CONSTRAINT IF EXISTS historico_compra_status_check;
+ALTER TABLE historico_compra ADD CONSTRAINT historico_compra_status_check
+  CHECK (status IN ('iniciada', 'aguardando_pagamento', 'paga', 'agendada', 'concluida', 'cancelada'));
 
 -- =====================================================================
 -- Dados iniciais (mesmos do lib/seed.ts)

@@ -54,7 +54,7 @@ Centralizar em um único sistema o fluxo de venda: consulta do estoque, escolha 
 
 **Não funcionais (RNF01–RNF08)**: interface responsiva (computador e celular); tempo de carregamento adequado; senha guardada com hash (RNF03); consistência dos dados; facilidade de manutenção; controle de acesso entre cliente e administrador (RNF07); clareza visual do status do pedido.
 
-**Regras de negócio (RN01–RN12)**: só usuário cadastrado conclui compra (RN01); cada compra tem exatamente um veículo (RN02); veículo vendido não fica disponível (RN03); entrega exige endereço completo (RN04); retirada exige data e horário (RN05); agendamento pertence a uma compra (RN06); uma compra tem um pagamento (RN07); comprovante só após confirmação (RN08); total = veículo + frete quando houver entrega (RN09); só o administrador cadastra ou remove veículos (RN10); histórico de status (RN11); frete depende do endereço (RN12).
+**Regras de negócio (RN01–RN12)**: só usuário cadastrado conclui compra (RN01); cada compra tem exatamente um veículo (RN02); veículo vendido não fica disponível (RN03); entrega exige endereço completo (RN04); retirada exige data e horário (RN05); agendamento pertence a uma compra (RN06); uma compra tem um pagamento (RN07); comprovante só após confirmação (RN08); total = veículo + frete quando houver entrega (RN09); só o administrador cadastra ou remove veículos (RN10); histórico de status (RN11); frete depende do endereço (RN12); só o administrador cancela uma venda concluída, e o veículo volta ao estoque (RN13).
 
 ## 6. Principais funcionalidades
 
@@ -156,6 +156,7 @@ Rotas da API:
 - **Pagamento (RF10 a RF14, RN07):** PIX mostra a chave; boleto gera a linha digitável; cartão guarda apenas os quatro últimos dígitos (RNF03).
 - **Conclusão (RF15, RF18, RN03, RN08):** ao confirmar, o pedido vira "concluída", o comprovante é emitido uma única vez e o veículo sai do estoque.
 - **Estoque administrativo (RF16, RN10):** o administrador cadastra, edita e remove veículos. Um veículo que já tem pedido não pode ser removido (409), para preservar o histórico de vendas.
+- **Cancelamento de venda (RN13):** só o administrador cancela, e só uma venda já concluída (a API recusa com 409 fora desse caso). Ao cancelar, o veículo volta a ficar disponível no estoque e some das métricas de faturamento do relatório.
 - **Histórico (RN11):** toda mudança de status é registrada com data e hora.
 
 ## 13. Dificuldades encontradas

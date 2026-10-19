@@ -23,6 +23,16 @@ export async function PATCH(req: Request, { params }: Ctx) {
   if (!atual) return NextResponse.json({ erro: "Compra não encontrada" }, { status: 404 });
 
   const patch = (await req.json()) as Partial<Compra>;
+
+  // Cancelamento de venda: só é permitido a partir de uma venda concluída,
+  // e só o administrador pode cancelar (checado na tela, ver lib/store.tsx).
+  if (patch.status === "cancelada" && atual.status !== "concluida") {
+    return NextResponse.json(
+      { erro: "Só é possível cancelar uma venda concluída." },
+      { status: 409 },
+    );
+  }
+
   const nova: Compra = { ...atual, ...patch, id };
 
   // RN09 — o total é recalculado no servidor (veículo + frete quando há entrega)
@@ -48,6 +58,11 @@ export async function PATCH(req: Request, { params }: Ctx) {
     }
     // RF18 / RN03 — o veículo sai do estoque (operação idempotente)
     await veiculos.marcarVendido(nova.veiculoId);
+  }
+
+  // Cancelamento de venda (pedido do professor): devolve o veículo ao estoque.
+  if (nova.status === "cancelada") {
+    await veiculos.devolverAoEstoque(nova.veiculoId);
   }
 
   return NextResponse.json(await compras.salvar(nova));

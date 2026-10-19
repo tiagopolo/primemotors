@@ -21,6 +21,7 @@ const ROTULO_STATUS: Record<StatusCompra, string> = {
   paga: "Paga",
   agendada: "Agendada",
   concluida: "Concluída",
+  cancelada: "Cancelada",
 };
 
 const COR_STATUS: Record<StatusCompra, string> = {
@@ -29,6 +30,7 @@ const COR_STATUS: Record<StatusCompra, string> = {
   paga: "bg-[color:var(--pm-primary)]/20 text-[color:var(--pm-primary-2)]",
   agendada: "bg-[color:var(--pm-primary)]/20 text-[color:var(--pm-primary-2)]",
   concluida: "bg-[color:var(--pm-success)]/20 text-[color:var(--pm-success)]",
+  cancelada: "bg-[color:var(--pm-danger)]/20 text-[color:var(--pm-danger)]",
 };
 
 export default function MinhasCompras() {

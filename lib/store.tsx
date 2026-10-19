@@ -101,6 +101,8 @@ interface Ctx {
   atualizarCompra: (id: string, patch: Partial<Compra>) => Promise<Compra | null>;
   registrarPagamento: (compraId: string, pagamento: Pagamento) => Promise<Compra | null>;
   confirmarCompra: (compraId: string) => Promise<Compra | null>;
+  /** Só o administrador cancela uma venda concluída; o veículo volta ao estoque. */
+  cancelarVenda: (compraId: string) => Promise<Resultado>;
   buscarCompra: (id: string) => Compra | undefined;
 }
 
@@ -355,6 +357,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [trocarCompra, sincronizar],
   );
 
+  /**
+   * Cancelamento de venda (pedido do professor) — só o administrador cancela,
+   * e só uma venda já concluída; o servidor devolve o veículo ao estoque.
+   */
+  const cancelarVenda = useCallback<Ctx["cancelarVenda"]>(
+    async (compraId) => {
+      if (usuario?.perfil !== "admin") {
+        return { ok: false, erro: "Somente o administrador cancela uma venda." };
+      }
+      const r = await pedir<Compra>(`/api/compras/${compraId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: "cancelada" } satisfies Partial<Compra> & {
+          status: StatusCompra;
+        }),
+      });
+      if (!r.ok) return r;
+      trocarCompra(r.dados);
+      await sincronizar(); // o veículo voltou a "disponivel" no servidor
+      return { ok: true };
+    },
+    [usuario, trocarCompra, sincronizar],
+  );
+
   const buscarCompra = useCallback(
     (id: string) => compras.find((c) => c.id === id),
     [compras],
@@ -381,13 +406,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       atualizarCompra,
       registrarPagamento,
       confirmarCompra,
+      cancelarVenda,
       buscarCompra,
     }),
     [
       pronto, usuario, veiculos, compras, preferencias, entrar, entrarComoVisitante,
       cadastrar, sair, recuperarSenha, atualizarPerfil, setPreferencias, salvarVeiculo,
       removerVeiculo, buscarVeiculo, criarCompra, atualizarCompra, registrarPagamento,
-      confirmarCompra, buscarCompra,
+      confirmarCompra, cancelarVenda, buscarCompra,
     ],
   );
 
