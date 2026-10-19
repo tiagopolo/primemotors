@@ -19,6 +19,35 @@
   --pm-muted: #8aa0c8;
 }
 
+/* Tema claro — alternado pelo botão sol/lua (components/AlternadorTema.tsx) */
+:root[data-theme="claro"] {
+  --pm-bg: #f3f6fc;
+  --pm-bg-2: #ffffff;
+  --pm-surface: #ffffff;
+  --pm-surface-2: #e9eefb;
+  --pm-border: #d3ddf0;
+  --pm-primary: #1d6ef5;
+  --pm-primary-2: #1558c9;
+  --pm-accent: #0891b2;
+  --pm-success: #16a34a;
+  --pm-danger: #dc2626;
+  --pm-text: #10172a;
+  --pm-muted: #5a6b8c;
+}
+
+/* Ícone do botão de tema (components/AlternadorTema.tsx): mostra o sol no
+   tema escuro (clique para clarear) e a lua no tema claro (clique para
+   escurecer) — decidido em CSS para não depender de estado/efeito no React. */
+.pm-icone-lua {
+  display: none;
+}
+:root[data-theme="claro"] .pm-icone-sol {
+  display: none;
+}
+:root[data-theme="claro"] .pm-icone-lua {
+  display: block;
+}
+
 @theme inline {
   --color-pm-bg: var(--pm-bg);
   --color-pm-bg2: var(--pm-bg-2);
@@ -138,4 +167,22 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--pm-border);
   border-radius: 8px;
+}
+
+/* Exportação de relatório em PDF (window.print(), ver app/(sistema)/relatorios) */
+@media print {
+  .pm-no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .pm-card {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+  }
 }

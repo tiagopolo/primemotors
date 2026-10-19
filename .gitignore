@@ -44,3 +44,8 @@ next-env.d.ts
 # banco em modo arquivo e variaveis locais
 .data/
 .env.local
+
+# configuracao de ferramenta de desenvolvimento (nao faz parte do trabalho)
+.claude/
+CLAUDE.md
+AGENTS.md

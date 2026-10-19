@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { Marca } from "./Marca";
+import { AlternadorTema } from "./AlternadorTema";
 import { useApp } from "@/lib/store";
 import { dataHoraBR } from "@/lib/utils";
 import type { StatusCompra } from "@/lib/types";
@@ -79,7 +80,7 @@ export function Cabecalho({ voltar = false }: { voltar?: boolean }) {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-[color:var(--pm-border)] bg-[color:var(--pm-bg)]/85 backdrop-blur">
+      <header className="pm-no-print sticky top-0 z-30 border-b border-[color:var(--pm-border)] bg-[color:var(--pm-bg)]/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           {voltar ? (
             <button
@@ -101,6 +102,8 @@ export function Cabecalho({ voltar = false }: { voltar?: boolean }) {
 
           <Marca largura={160} />
 
+          <div className="flex items-center gap-1">
+          <AlternadorTema />
           <div className="relative">
             <button
               onClick={() => setNotifAberto((a) => !a)}
@@ -150,6 +153,7 @@ export function Cabecalho({ voltar = false }: { voltar?: boolean }) {
                 </div>
               </>
             )}
+          </div>
           </div>
         </div>
       </header>
@@ -210,7 +214,7 @@ export function NavegacaoInferior() {
   const caminho = usePathname();
   const { usuario } = useApp();
   return (
-    <nav className="sticky bottom-0 z-30 border-t border-[color:var(--pm-border)] bg-[color:var(--pm-bg-2)]/95 backdrop-blur">
+    <nav className="pm-no-print sticky bottom-0 z-30 border-t border-[color:var(--pm-border)] bg-[color:var(--pm-bg-2)]/95 backdrop-blur">
       <ul className="mx-auto flex max-w-5xl items-stretch justify-between px-2">
         {navParaPerfil(usuario?.perfil).map(({ href, rotulo, Icone }) => {
           const ativo = caminho.startsWith(href);

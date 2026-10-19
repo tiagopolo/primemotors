@@ -56,10 +56,18 @@ CREATE TABLE IF NOT EXISTS veiculo (
                  CHECK (status IN ('disponivel', 'reservado', 'vendido')),
   card_cor       VARCHAR(9)    NOT NULL DEFAULT '#1f6fff',
   criado_em      TIMESTAMPTZ   NOT NULL DEFAULT now(),
+  -- preenchida só quando o veículo é vendido; usada para ordenar o estoque
+  -- pela data da venda em vez da data de cadastro
+  vendido_em     TIMESTAMPTZ,
   CONSTRAINT chk_zero_km CHECK (quilometragem = 0)
 );
 
 CREATE INDEX IF NOT EXISTS idx_veiculo_status ON veiculo (status);
+CREATE INDEX IF NOT EXISTS idx_veiculo_vendido_em ON veiculo (vendido_em);
+
+-- Se o banco já existia antes da coluna vendido_em (melhoria pedida pelo professor),
+-- este comando adiciona a coluna sem apagar os dados.
+ALTER TABLE veiculo ADD COLUMN IF NOT EXISTS vendido_em TIMESTAMPTZ;
 
 -- Opção normalizada para as fotos (usada se o professor pedir 3FN)
 CREATE TABLE IF NOT EXISTS imagem_veiculo (

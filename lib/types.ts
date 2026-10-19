@@ -48,6 +48,8 @@ export interface Veiculo {
   /** cor de destaque usada no card (o prototipo usa fotos; aqui geramos o visual) */
   cardCor: string;
   criadoEm: string;
+  /** Data em que o veículo foi marcado como vendido (RF18) — usada para ordenar o estoque. */
+  vendidoEm?: string;
 }
 
 /** RF07 */

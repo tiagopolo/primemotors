@@ -9,6 +9,7 @@ import {
   Car,
   DollarSign,
   Download,
+  FileDown,
   FileText,
   ShieldAlert,
   Users,
@@ -71,6 +72,16 @@ export default function Relatorios() {
     URL.revokeObjectURL(url);
   }
 
+  /**
+   * Exporta em PDF usando a impressão do navegador: o estilo em
+   * app/globals.css (regra @media print) esconde o menu, o rodapé e os
+   * próprios botões, deixando só o conteúdo do relatório. Na caixa de
+   * impressão, a pessoa escolhe "Salvar como PDF".
+   */
+  function exportarPdf() {
+    window.print();
+  }
+
   return (
     <>
       <div className="mb-4 flex items-start justify-between gap-3">
@@ -81,7 +92,7 @@ export default function Relatorios() {
         <select
           value={periodo}
           onChange={(e) => setPeriodo(e.target.value as typeof periodo)}
-          className="rounded-lg border border-[color:var(--pm-border)] bg-[color:var(--pm-bg-2)] px-3 py-1.5 text-xs"
+          className="pm-no-print rounded-lg border border-[color:var(--pm-border)] bg-[color:var(--pm-bg-2)] px-3 py-1.5 text-xs"
         >
           <option value="mes">Últimos 6 meses</option>
           <option value="ano">Últimos 12 meses</option>
@@ -173,9 +184,14 @@ export default function Relatorios() {
         )}
       </section>
 
-      <button onClick={exportarCsv} className="pm-btn pm-btn-primary mb-4 w-full">
-        <Download size={16} /> Exportar relatório (CSV)
-      </button>
+      <div className="pm-no-print mb-4 flex flex-col gap-2 sm:flex-row">
+        <button onClick={exportarCsv} className="pm-btn pm-btn-primary w-full">
+          <Download size={16} /> Exportar relatório (CSV)
+        </button>
+        <button onClick={exportarPdf} className="pm-btn pm-btn-ghost w-full">
+          <FileDown size={16} /> Exportar relatório (PDF)
+        </button>
+      </div>
     </>
   );
 }

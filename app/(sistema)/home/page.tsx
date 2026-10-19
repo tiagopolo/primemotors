@@ -30,15 +30,18 @@ function Kpi({
   valor,
   variacao,
   positivo = true,
+  href,
 }: {
   Icone: React.ComponentType<{ size?: number; className?: string }>;
   rotulo: string;
   valor: string;
   variacao: string;
   positivo?: boolean;
+  /** Quando informado, o cartão vira um link — ex.: o KPI "Veículos" leva ao estoque. */
+  href?: string;
 }) {
-  return (
-    <div className="pm-card p-3">
+  const conteudo = (
+    <>
       <div className="mb-2 flex items-center gap-2">
         <span className="rounded-md bg-[color:var(--pm-primary)]/20 p-1.5">
           <Icone size={14} className="text-[color:var(--pm-primary-2)]" />
@@ -60,8 +63,20 @@ function Kpi({
           em relação ao mês anterior
         </span>
       </p>
-    </div>
+    </>
   );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className="pm-card block p-3 transition-transform hover:-translate-y-0.5 hover:border-[color:var(--pm-primary)] active:translate-y-0"
+      >
+        {conteudo}
+      </Link>
+    );
+  }
+  return <div className="pm-card p-3">{conteudo}</div>;
 }
 
 export default function Home() {
@@ -91,13 +106,14 @@ export default function Home() {
       </div>
 
       <div className="mb-4 grid grid-cols-2 gap-3">
-        <Kpi Icone={Car} rotulo="Veículos" valor={String(veiculos.length)} variacao="+12%" />
-        <Kpi Icone={Users} rotulo="Clientes" valor="587" variacao="+8%" />
+        <Kpi Icone={Car} rotulo="Veículos" valor={String(veiculos.length)} variacao="+12%" href="/veiculos" />
+        <Kpi Icone={Users} rotulo="Clientes" valor="587" variacao="+8%" href="/relatorios" />
         <Kpi
           Icone={BadgeDollarSign}
           rotulo="Vendas do mês"
           valor={moeda(faturamentoMes || 1250000)}
           variacao="+18%"
+          href="/relatorios"
         />
         <Kpi Icone={FileText} rotulo="Propostas" valor="42" variacao="-5%" positivo={false} />
       </div>

@@ -123,6 +123,7 @@ function linhaParaVeiculo(l: Record<string, unknown>): Veiculo {
     status: l.status as Veiculo["status"],
     cardCor: String(l.card_cor ?? "#1f6fff"),
     criadoEm: String(l.criado_em ?? new Date().toISOString()),
+    vendidoEm: l.vendido_em ? String(l.vendido_em) : undefined,
   };
 }
 
@@ -191,12 +192,17 @@ export const veiculos = {
   /** RF18 / RN03 — o veículo sai do estoque disponível após a venda. */
   async marcarVendido(id: string): Promise<void> {
     if (USANDO_POSTGRES) {
-      await executar("UPDATE veiculo SET status = 'vendido' WHERE id = $1", [id]);
+      await executar(
+        "UPDATE veiculo SET status = 'vendido', vendido_em = COALESCE(vendido_em, now()) WHERE id = $1",
+        [id],
+      );
       return;
     }
     const banco = await lerArquivo();
     banco.veiculos = banco.veiculos.map((v) =>
-      v.id === id ? { ...v, status: "vendido" } : v,
+      v.id === id
+        ? { ...v, status: "vendido", vendidoEm: v.vendidoEm ?? new Date().toISOString() }
+        : v,
     );
     await gravarArquivo(banco);
   },

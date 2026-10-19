@@ -9,11 +9,12 @@ import {
   ChevronRight,
   DollarSign,
   Gauge,
+  PlusCircle,
   Search,
   SlidersHorizontal,
 } from "lucide-react";
 import { useApp } from "@/lib/store";
-import { km, moeda } from "@/lib/utils";
+import { dataBR, km, moeda } from "@/lib/utils";
 import { CarroArte } from "@/components/CarroArte";
 import { Titulo } from "@/components/Layout";
 import type { StatusVeiculo } from "@/lib/types";
@@ -25,7 +26,7 @@ const FILTROS: { valor: StatusVeiculo | "todos"; rotulo: string }[] = [
 ];
 
 export default function Veiculos() {
-  const { veiculos } = useApp();
+  const { usuario, veiculos } = useApp();
   const [busca, setBusca] = useState("");
   const [filtro, setFiltro] = useState<StatusVeiculo | "todos">("todos");
   const [ordem, setOrdem] = useState<"recentes" | "menor" | "maior">("recentes");
@@ -41,12 +42,32 @@ export default function Veiculos() {
     });
     if (ordem === "menor") return [...filtrada].sort((a, b) => a.preco - b.preco);
     if (ordem === "maior") return [...filtrada].sort((a, b) => b.preco - a.preco);
-    return [...filtrada].sort((a, b) => b.criadoEm.localeCompare(a.criadoEm));
+    // "Mais recentes": disponíveis primeiro (pela data de cadastro), depois os
+    // vendidos, ordenados pela data da venda — sem isso, um carro vendido há
+    // meses podia aparecer entre os disponíveis mais novos.
+    return [...filtrada].sort((a, b) => {
+      if (a.status === "vendido" && b.status !== "vendido") return 1;
+      if (b.status === "vendido" && a.status !== "vendido") return -1;
+      if (a.status === "vendido" && b.status === "vendido") {
+        return (b.vendidoEm ?? b.criadoEm).localeCompare(a.vendidoEm ?? a.criadoEm);
+      }
+      return b.criadoEm.localeCompare(a.criadoEm);
+    });
   }, [veiculos, busca, filtro, ordem]);
 
   return (
     <>
-      <Titulo titulo="Veículos em Estoque" subtitulo="Gerencie os veículos cadastrados" />
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <Titulo titulo="Veículos em Estoque" subtitulo="Gerencie os veículos cadastrados" />
+        {usuario?.perfil === "admin" && (
+          <Link
+            href="/cadastrar"
+            className="pm-btn pm-btn-primary pm-glow shrink-0 whitespace-nowrap"
+          >
+            <PlusCircle size={18} /> Cadastrar veículo
+          </Link>
+        )}
+      </div>
 
       <div className="pm-card mb-4 p-3">
         <div className="flex items-center gap-2">
@@ -117,6 +138,11 @@ export default function Veiculos() {
                     {v.status}
                   </span>
                 </div>
+                {v.status === "vendido" && (
+                  <p className="mt-0.5 text-[10px] text-[color:var(--pm-muted)]">
+                    Vendido em {dataBR(v.vendidoEm ?? v.criadoEm)}
+                  </p>
+                )}
                 <div className="mt-1.5 space-y-1 text-[11px] text-[color:var(--pm-muted)]">
                   <p className="flex items-center gap-1.5">
                     <Calendar size={12} /> Ano <span className="ml-auto text-[color:var(--pm-text)]">{v.ano}</span>
