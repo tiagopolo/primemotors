@@ -18,6 +18,16 @@ import {
 } from "lucide-react";
 import { Marca } from "./Marca";
 import { useApp } from "@/lib/store";
+import { dataHoraBR } from "@/lib/utils";
+import type { StatusCompra } from "@/lib/types";
+
+const ROTULO_STATUS: Record<StatusCompra, string> = {
+  iniciada: "iniciado",
+  aguardando_pagamento: "aguardando pagamento",
+  paga: "com pagamento confirmado",
+  agendada: "agendado",
+  concluida: "concluído",
+};
 
 const NAV = [
   { href: "/home", rotulo: "Home", Icone: Home, somenteAdmin: false },
@@ -35,8 +45,37 @@ function navParaPerfil(perfil: "cliente" | "admin" | undefined) {
 
 export function Cabecalho({ voltar = false }: { voltar?: boolean }) {
   const router = useRouter();
-  const { usuario, sair } = useApp();
+  const { usuario, sair, compras } = useApp();
   const [menuAberto, setMenuAberto] = useState(false);
+  const [notifAberto, setNotifAberto] = useState(false);
+
+  /**
+   * Notificações: para o cliente, cada mudança de status das próprias
+   * compras (RN11); para o admin, o status mais recente de cada pedido.
+   */
+  const notificacoes =
+    usuario?.perfil === "admin"
+      ? [...compras]
+          .map((c) => ({
+            id: c.id,
+            compraId: c.id,
+            texto: `Pedido ${c.veiculoDescricao} está ${ROTULO_STATUS[c.status] ?? c.status}`,
+            em: c.historico.at(-1)?.em ?? c.criadaEm,
+          }))
+          .sort((a, b) => b.em.localeCompare(a.em))
+          .slice(0, 6)
+      : compras
+          .filter((c) => c.usuarioId === usuario?.id)
+          .flatMap((c) =>
+            c.historico.map((h) => ({
+              id: `${c.id}-${h.status}-${h.em}`,
+              compraId: c.id,
+              texto: `Seu pedido ${c.veiculoDescricao} está ${ROTULO_STATUS[h.status] ?? h.status}`,
+              em: h.em,
+            })),
+          )
+          .sort((a, b) => b.em.localeCompare(a.em))
+          .slice(0, 6);
 
   return (
     <>
@@ -62,15 +101,56 @@ export function Cabecalho({ voltar = false }: { voltar?: boolean }) {
 
           <Marca largura={160} />
 
-          <button
-            aria-label="Notificações"
-            className="relative rounded-lg p-2 hover:bg-[color:var(--pm-surface-2)]"
-          >
-            <Bell size={20} />
-            <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[color:var(--pm-primary)] text-[10px] font-bold">
-              3
-            </span>
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setNotifAberto((a) => !a)}
+              aria-label="Notificações"
+              className="relative rounded-lg p-2 hover:bg-[color:var(--pm-surface-2)]"
+            >
+              <Bell size={20} />
+              {notificacoes.length > 0 && (
+                <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[color:var(--pm-primary)] text-[10px] font-bold">
+                  {notificacoes.length}
+                </span>
+              )}
+            </button>
+
+            {notifAberto && (
+              <>
+                <div
+                  className="fixed inset-0 z-40"
+                  onClick={() => setNotifAberto(false)}
+                />
+                <div className="absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-[color:var(--pm-border)] bg-[color:var(--pm-bg-2)] p-2 shadow-xl">
+                  <p className="pm-label px-2 py-1">Notificações</p>
+                  {notificacoes.length === 0 ? (
+                    <p className="px-2 py-4 text-center text-xs text-[color:var(--pm-muted)]">
+                      Nenhuma notificação por enquanto.
+                    </p>
+                  ) : (
+                    <ul className="max-h-80 space-y-1 overflow-y-auto">
+                      {notificacoes.map((n) => (
+                        <li key={n.id}>
+                          <button
+                            onClick={() => {
+                              setNotifAberto(false);
+                              router.push(`/comprovante/${n.compraId}`);
+                            }}
+                            className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2 py-2 text-left text-xs hover:bg-[color:var(--pm-surface-2)]"
+                          >
+                            <span className="font-semibold">{n.texto}</span>
+                            <span className="text-[10px] text-[color:var(--pm-muted)]">
+                              {dataHoraBR(n.em)}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </header>
 
