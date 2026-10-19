@@ -8,7 +8,8 @@ export const USUARIOS_INICIAIS: Usuario[] = [
     nome: "Tiago Marson Polo",
     email: "admin@primemotors.com",
     telefone: "(44) 99999-9999",
-    senhaHash: hashSenha("admin123"),
+    // hash gerado a partir da senha de teste combinada com o grupo (ver docs/GUIA-HOSPEDAGEM.md)
+    senhaHash: "pm$f5505c1f",
     perfil: "admin",
     criadoEm: "2026-01-10T09:00:00.000Z",
   },
@@ -17,7 +18,7 @@ export const USUARIOS_INICIAIS: Usuario[] = [
     nome: "Anthonny Gabriel Ribeiro",
     email: "cliente@primemotors.com",
     telefone: "(44) 98888-1010",
-    senhaHash: hashSenha("cliente123"),
+    senhaHash: "pm$319b164b",
     perfil: "cliente",
     criadoEm: "2026-02-02T09:00:00.000Z",
   },

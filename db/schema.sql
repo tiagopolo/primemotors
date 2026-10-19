@@ -173,10 +173,10 @@ CREATE TABLE IF NOT EXISTS historico_compra (
 -- (lib/utils.ts) a partir das senhas de teste combinadas com o grupo.
 -- =====================================================================
 INSERT INTO usuario (id, nome, email, telefone, senha_hash, perfil) VALUES
-  ('usr_admin',     'Tiago Marson Polo',        'admin@primemotors.com',   '(44) 99999-9999', 'pm$a63f45da', 'admin'),
-  ('usr_cliente',   'Anthonny Gabriel Ribeiro', 'cliente@primemotors.com', '(44) 98888-1010', 'pm$b3b855e9', 'cliente'),
+  ('usr_admin',     'Tiago Marson Polo',        'admin@primemotors.com',   '(44) 99999-9999', 'pm$f5505c1f', 'admin'),
+  ('usr_cliente',   'Anthonny Gabriel Ribeiro', 'cliente@primemotors.com', '(44) 98888-1010', 'pm$319b164b', 'cliente'),
   ('usr_visitante', 'Visitante',                'visitante@primemotors.com', '',               'pm$1505',    'cliente')
-ON CONFLICT (id) DO UPDATE SET nome = EXCLUDED.nome;
+ON CONFLICT (id) DO UPDATE SET nome = EXCLUDED.nome, senha_hash = EXCLUDED.senha_hash;
 
 INSERT INTO veiculo
   (id, marca, modelo, ano, preco, cor, cambio, combustivel, carroceria, motor, potencia, descricao, fotos, status, card_cor)
