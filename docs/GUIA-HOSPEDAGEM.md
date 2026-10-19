@@ -45,7 +45,7 @@ npm install
 npm run dev
 ```
 
-4. Abra `http://localhost:3000` no navegador e entre com `admin@primemotors.com` / `admin123`.
+4. Abra `http://localhost:3000` no navegador e entre com as credenciais de administrador do grupo.
 
 Se a página abrir, o sistema está pronto para o próximo passo. Sem um `.env.local` configurado, o sistema roda no **modo arquivo** (`.data/db.json`) — funciona normalmente, só não é o banco de verdade ainda.
 
@@ -89,7 +89,7 @@ DATABASE_SSL="true"
 
 2. Reinicie o `npm run dev` (Ctrl+C e rode de novo; o `.env.local` só é lido na inicialização).
 3. Abra `http://localhost:3000/api/veiculos` no navegador. Você deve ver a lista com os 6 veículos em JSON.
-4. Entre no sistema com `admin@primemotors.com` / `admin123`. Se der "E-mail ou senha inválidos", confirme se o `schema.sql` foi executado por completo (Passo 2.1).
+4. Entre no sistema com as credenciais de administrador do grupo. Se der "E-mail ou senha inválidos", confirme se o `schema.sql` foi executado por completo (Passo 2.1).
 
 ---
 
@@ -148,7 +148,7 @@ git push -u origin main
 ### 4.1 Conferir a publicação
 
 1. Abra `https://SEU-ENDERECO.netlify.app/api/veiculos`. Deve aparecer a lista de veículos.
-2. Abra `https://SEU-ENDERECO.netlify.app/login` e entre com `admin@primemotors.com` / `admin123`.
+2. Abra `https://SEU-ENDERECO.netlify.app/login` e entre com as credenciais de administrador do grupo.
 3. Faça uma compra de teste completa (retirada, pagamento com cartão). Depois confira no **Table Editor** do Supabase que a compra apareceu na tabela `compra` e que o veículo ficou com `status = 'vendido'`.
 
 > Para a apresentação, use outros veículos ou apague a compra de teste no Table Editor, para o estoque começar do jeito que você quer mostrar.

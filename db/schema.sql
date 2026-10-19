@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS historico_compra (
 
 -- =====================================================================
 -- Dados iniciais (mesmos do lib/seed.ts)
--- Senhas: admin123 e cliente123 (hash didático do lib/utils.ts)
--- Os hashes abaixo foram calculados pela própria função hashSenha().
+-- Os hashes abaixo foram calculados pela própria função hashSenha()
+-- (lib/utils.ts) a partir das senhas de teste combinadas com o grupo.
 -- =====================================================================
 INSERT INTO usuario (id, nome, email, telefone, senha_hash, perfil) VALUES
   ('usr_admin',     'Tiago Marson Polo',        'admin@primemotors.com',   '(44) 99999-9999', 'pm$a63f45da', 'admin'),

@@ -36,12 +36,9 @@ Por padrão roda sem banco (modo arquivo). Para usar PostgreSQL de verdade (Supa
 
 ### Usuários de teste
 
-| Perfil | E-mail | Senha |
-|---|---|---|
-| Administrador | admin@primemotors.com | admin123 |
-| Cliente | cliente@primemotors.com | cliente123 |
-
-Há também o botão **Acessar como visitante** na tela de login.
+Este repositório é público e o sistema está publicado, então as credenciais de teste não ficam
+documentadas aqui — peça ao grupo. Para só navegar pelo sistema, use o botão **Acessar como
+visitante** na tela de login.
 
 ---
 

@@ -50,7 +50,7 @@ curl http://localhost:3000/api/veiculos
 
 curl -X POST http://localhost:3000/api/auth/login ^
   -H "Content-Type: application/json" ^
-  -d "{\"email\":\"admin@primemotors.com\",\"senha\":\"admin123\"}"
+  -d "{\"email\":\"SEU_EMAIL\",\"senha\":\"SUA_SENHA\"}"
 ```
 
 (No PowerShell, troque `^` por `` ` `` ou use `Invoke-RestMethod`.)

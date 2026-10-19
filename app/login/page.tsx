@@ -123,14 +123,6 @@ export default function Login() {
             <UserPlus size={16} /> Criar conta
           </Link>
         </form>
-
-        <div className="pm-card mt-4 p-3 text-center text-[11px] text-[color:var(--pm-muted)]">
-          <p className="font-semibold text-[color:var(--pm-text)]">
-            Usuários de teste
-          </p>
-          <p>admin@primemotors.com / admin123 — administrador</p>
-          <p>cliente@primemotors.com / cliente123 — cliente</p>
-        </div>
       </div>
     </main>
   );
