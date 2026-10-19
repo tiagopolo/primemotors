@@ -147,7 +147,7 @@ function HomeCliente({
             Minhas compras
           </h2>
           {minhasCompras.length > 0 && (
-            <Link href="/configuracoes" className="text-xs font-semibold text-[color:var(--pm-primary-2)]">
+            <Link href="/minhas-compras" className="text-xs font-semibold text-[color:var(--pm-primary-2)]">
               Ver tudo
             </Link>
           )}
@@ -162,7 +162,7 @@ function HomeCliente({
             {minhasCompras.map((c) => (
               <li key={c.id}>
                 <Link
-                  href={c.status === "concluida" ? `/comprovante/${c.id}` : `/comprar/${c.veiculoId}`}
+                  href={`/comprovante/${c.id}`}
                   className="flex items-center gap-2 rounded-lg border border-[color:var(--pm-border)] p-2 hover:bg-[color:var(--pm-surface-2)]"
                 >
                   {c.status === "concluida" ? (

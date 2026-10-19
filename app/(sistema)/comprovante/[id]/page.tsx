@@ -46,17 +46,30 @@ export default function ComprovantePage({
       <div className="pm-card mb-4 p-6 text-center">
         <CheckCircle2
           size={48}
-          className="mx-auto mb-3 text-[color:var(--pm-success)]"
+          className={`mx-auto mb-3 ${
+            compra.status === "concluida"
+              ? "text-[color:var(--pm-success)]"
+              : "text-[color:var(--pm-primary-2)]"
+          }`}
         />
-        <h1 className="text-xl font-bold">Compra confirmada!</h1>
-        <p className="mt-1 text-xs text-[color:var(--pm-muted)]">
-          Comprovante{" "}
-          <strong className="text-[color:var(--pm-primary-2)]">
-            {compra.comprovante?.codigo}
-          </strong>{" "}
-          · emitido em{" "}
-          {compra.comprovante && dataHoraBR(compra.comprovante.emitidoEm)}
-        </p>
+        <h1 className="text-xl font-bold">
+          {compra.status === "concluida"
+            ? "Compra confirmada!"
+            : `Pedido ${ROTULO_STATUS[compra.status] ?? compra.status}`}
+        </h1>
+        {compra.comprovante ? (
+          <p className="mt-1 text-xs text-[color:var(--pm-muted)]">
+            Comprovante{" "}
+            <strong className="text-[color:var(--pm-primary-2)]">
+              {compra.comprovante.codigo}
+            </strong>{" "}
+            · emitido em {dataHoraBR(compra.comprovante.emitidoEm)}
+          </p>
+        ) : (
+          <p className="mt-1 text-xs text-[color:var(--pm-muted)]">
+            O comprovante é emitido assim que o pedido é concluído.
+          </p>
+        )}
       </div>
 
       <div className="pm-card mb-4 p-4 text-xs">

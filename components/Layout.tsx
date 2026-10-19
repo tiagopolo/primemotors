@@ -12,6 +12,7 @@ import {
   LogOut,
   Menu,
   PlusCircle,
+  Receipt,
   Settings,
   X,
 } from "lucide-react";
@@ -21,6 +22,7 @@ import { useApp } from "@/lib/store";
 const NAV = [
   { href: "/home", rotulo: "Home", Icone: Home, somenteAdmin: false },
   { href: "/veiculos", rotulo: "Veículos", Icone: Car, somenteAdmin: false },
+  { href: "/minhas-compras", rotulo: "Compras", Icone: Receipt, somenteAdmin: false },
   { href: "/cadastrar", rotulo: "Cadastro", Icone: PlusCircle, somenteAdmin: true },
   { href: "/relatorios", rotulo: "Relatórios", Icone: BarChart3, somenteAdmin: true },
   { href: "/configuracoes", rotulo: "Configurações", Icone: Settings, somenteAdmin: false },
