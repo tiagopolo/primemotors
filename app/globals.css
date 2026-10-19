@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   PRIME MOTORS - Design System
+   Paleta extraida do prototipo Figma (tema dark azul)
+   ========================================================== */
+:root {
+  --pm-bg: #05070f;
+  --pm-bg-2: #0a1020;
+  --pm-surface: #0d1730;
+  --pm-surface-2: #122145;
+  --pm-border: #1e3a6e;
+  --pm-primary: #1d6ef5;
+  --pm-primary-2: #3b8dff;
+  --pm-accent: #00d1ff;
+  --pm-success: #22c55e;
+  --pm-danger: #ef4444;
+  --pm-text: #e8eefc;
+  --pm-muted: #8aa0c8;
+}
+
+@theme inline {
+  --color-pm-bg: var(--pm-bg);
+  --color-pm-bg2: var(--pm-bg-2);
+  --color-pm-surface: var(--pm-surface);
+  --color-pm-surface2: var(--pm-surface-2);
+  --color-pm-border: var(--pm-border);
+  --color-pm-primary: var(--pm-primary);
+  --color-pm-primary2: var(--pm-primary-2);
+  --color-pm-accent: var(--pm-accent);
+  --color-pm-success: var(--pm-success);
+  --color-pm-danger: var(--pm-danger);
+  --color-pm-text: var(--pm-text);
+  --color-pm-muted: var(--pm-muted);
+  --font-sans: var(--font-geist-sans);
+}
+
+html,
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -200px, #123a7a33, transparent),
+    var(--pm-bg);
+  color: var(--pm-text);
+}
+
+/* Card padrao com borda luminosa */
+.pm-card {
+  background: linear-gradient(180deg, var(--pm-surface) 0%, var(--pm-bg-2) 100%);
+  border: 1px solid var(--pm-border);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -18px var(--pm-primary);
+}
+
+.pm-glow {
+  box-shadow: 0 0 24px -6px var(--pm-primary);
+}
+
+/* Campos de formulario */
+.pm-input {
+  width: 100%;
+  background: var(--pm-bg-2);
+  border: 1px solid var(--pm-border);
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  color: var(--pm-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.pm-input::placeholder {
+  color: #5d739b;
+}
+.pm-input:focus {
+  border-color: var(--pm-primary);
+  box-shadow: 0 0 0 3px #1d6ef533;
+}
+
+.pm-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--pm-muted);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Botoes */
+.pm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.65rem;
+  padding: 0.7rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    filter 0.15s,
+    transform 0.05s;
+  border: 1px solid transparent;
+}
+.pm-btn:active {
+  transform: translateY(1px);
+}
+.pm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pm-btn-primary {
+  background: linear-gradient(180deg, var(--pm-primary-2), var(--pm-primary));
+  color: #fff;
+}
+.pm-btn-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+.pm-btn-success {
+  background: linear-gradient(180deg, #2fd66c, #16a34a);
+  color: #062b16;
+}
+.pm-btn-ghost {
+  background: transparent;
+  border-color: var(--pm-border);
+  color: var(--pm-text);
+}
+.pm-btn-ghost:hover:not(:disabled) {
+  background: var(--pm-surface-2);
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pm-border);
+  border-radius: 8px;
+}

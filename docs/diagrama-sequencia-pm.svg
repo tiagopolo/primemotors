@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2324 864" width="2324" height="864" font-family="DejaVu Sans, Segoe UI, Arial, sans-serif">
+<defs><marker id="s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#7f7f7f" stroke-width="1.6"/></marker></defs>
+<rect width="2324" height="864" fill="#ffffff"/>
+<text x="1162.0" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1f3864">DIAGRAMA DE SEQUÊNCIA – PRIME MOTORS</text>
+<text x="1162.0" y="66" text-anchor="middle" font-size="15" fill="#555">Atores e funcionalidades do Sistema de Compra de Veículos · Engenharia de Software (ADS1)</text>
+<line x1="126.0" y1="146" x2="126.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="274.0" y1="146" x2="274.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="422.0" y1="146" x2="422.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="570.0" y1="146" x2="570.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="718.0" y1="146" x2="718.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="866.0" y1="146" x2="866.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1014.0" y1="146" x2="1014.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1162.0" y1="146" x2="1162.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1310.0" y1="146" x2="1310.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1458.0" y1="146" x2="1458.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1606.0" y1="146" x2="1606.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1754.0" y1="146" x2="1754.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1902.0" y1="146" x2="1902.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="2050.0" y1="146" x2="2050.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="2198.0" y1="146" x2="2198.0" y2="738" stroke="#333" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="126.0" y1="188" x2="570.0" y2="188" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="317.0" y="177" width="62.0" height="14" fill="#ffffff"/>
+<text x="348.0" y="187" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="126.0" y1="218" x2="866.0" y2="218" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="465.0" y="207" width="62.0" height="14" fill="#ffffff"/>
+<text x="496.0" y="217" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="126.0" y1="248" x2="1014.0" y2="248" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="539.0" y="237" width="62.0" height="14" fill="#ffffff"/>
+<text x="570.0" y="247" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="278" x2="126.0" y2="278" stroke="#7f7f7f" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#s)"/>
+<rect x="178.3" y="267" width="43.4" height="14" fill="#ffffff"/>
+<text x="200.0" y="277" text-anchor="middle" font-size="10.5" fill="#444">herança</text>
+<line x1="274.0" y1="308" x2="570.0" y2="308" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="391.0" y="297" width="62.0" height="14" fill="#ffffff"/>
+<text x="422.0" y="307" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="338" x2="718.0" y2="338" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="465.0" y="327" width="62.0" height="14" fill="#ffffff"/>
+<text x="496.0" y="337" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="368" x2="1162.0" y2="368" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="687.0" y="357" width="62.0" height="14" fill="#ffffff"/>
+<text x="718.0" y="367" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="398" x2="1310.0" y2="398" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="761.0" y="387" width="62.0" height="14" fill="#ffffff"/>
+<text x="792.0" y="397" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="428" x2="1458.0" y2="428" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="835.0" y="417" width="62.0" height="14" fill="#ffffff"/>
+<text x="866.0" y="427" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="458" x2="1606.0" y2="458" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="909.0" y="447" width="62.0" height="14" fill="#ffffff"/>
+<text x="940.0" y="457" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="274.0" y1="488" x2="1754.0" y2="488" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="983.0" y="477" width="62.0" height="14" fill="#ffffff"/>
+<text x="1014.0" y="487" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="422.0" y1="518" x2="274.0" y2="518" stroke="#7f7f7f" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#s)"/>
+<rect x="326.3" y="507" width="43.4" height="14" fill="#ffffff"/>
+<text x="348.0" y="517" text-anchor="middle" font-size="10.5" fill="#444">herança</text>
+<line x1="422.0" y1="548" x2="1902.0" y2="548" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="1131.0" y="537" width="62.0" height="14" fill="#ffffff"/>
+<text x="1162.0" y="547" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="422.0" y1="578" x2="2050.0" y2="578" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="1205.0" y="567" width="62.0" height="14" fill="#ffffff"/>
+<text x="1236.0" y="577" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="422.0" y1="608" x2="2198.0" y2="608" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="1279.0" y="597" width="62.0" height="14" fill="#ffffff"/>
+<text x="1310.0" y="607" text-anchor="middle" font-size="10.5" fill="#444">associação</text>
+<line x1="1754.0" y1="638" x2="274.0" y2="638" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<line x1="2050.0" y1="668" x2="422.0" y2="668" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<rect x="60" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="126.0" y="123.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Visitante</text>
+<rect x="60" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="126.0" y="771.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Visitante</text>
+<rect x="208" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="274.0" y="123.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Cliente</text>
+<rect x="208" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="274.0" y="771.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Cliente</text>
+<rect x="356" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="422.0" y="123.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Administrador</text>
+<rect x="356" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="422.0" y="771.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Administrador</text>
+<rect x="504" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="570.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Autenticar no</text>
+<text x="570.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Sistema</text>
+<rect x="504" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="570.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Autenticar no</text>
+<text x="570.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Sistema</text>
+<rect x="652" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="718.0" y="123.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Recuperar Senha</text>
+<rect x="652" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="718.0" y="771.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Recuperar Senha</text>
+<rect x="800" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="866.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Consultar</text>
+<text x="866.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Estoque</text>
+<rect x="800" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="866.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Consultar</text>
+<text x="866.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Estoque</text>
+<rect x="948" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1014.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Detalhar</text>
+<text x="1014.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Veículo</text>
+<rect x="948" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1014.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Detalhar</text>
+<text x="1014.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Veículo</text>
+<rect x="1096" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1162.0" y="123.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Realizar Compra</text>
+<rect x="1096" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1162.0" y="771.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Realizar Compra</text>
+<rect x="1244" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1310.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Escolher</text>
+<text x="1310.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Recebimento</text>
+<rect x="1244" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1310.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Escolher</text>
+<text x="1310.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Recebimento</text>
+<rect x="1392" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1458.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Agendar Entrega</text>
+<text x="1458.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">ou Retirada</text>
+<rect x="1392" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1458.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Agendar Entrega</text>
+<text x="1458.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">ou Retirada</text>
+<rect x="1540" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1606.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Efetuar</text>
+<text x="1606.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Pagamento</text>
+<rect x="1540" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1606.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Efetuar</text>
+<text x="1606.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Pagamento</text>
+<rect x="1688" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1754.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Emitir</text>
+<text x="1754.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Comprovante</text>
+<rect x="1688" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1754.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Emitir</text>
+<text x="1754.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Comprovante</text>
+<rect x="1836" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1902.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Gerenciar</text>
+<text x="1902.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Estoque</text>
+<rect x="1836" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="1902.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Gerenciar</text>
+<text x="1902.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Estoque</text>
+<rect x="1984" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="2050.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Gerenciar</text>
+<text x="2050.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Pedidos</text>
+<rect x="1984" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="2050.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Gerenciar</text>
+<text x="2050.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Pedidos</text>
+<rect x="2132" y="90" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="2198.0" y="115.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Visualizar</text>
+<text x="2198.0" y="130.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Relatórios</text>
+<rect x="2132" y="738" width="132" height="56" rx="6" fill="#fff2cc" stroke="#d6b656" stroke-width="1.6"/>
+<text x="2198.0" y="763.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Visualizar</text>
+<text x="2198.0" y="778.0" text-anchor="middle" font-size="12" fill="#1a1a1a">Relatórios</text>
+<line x1="60" y1="820" x2="116" y2="820" stroke="#7f7f7f" stroke-width="1.3" marker-end="url(#s)"/>
+<text x="126" y="824" font-size="12" fill="#444">associação — o ator utiliza a funcionalidade</text>
+<line x1="490" y1="820" x2="546" y2="820" stroke="#7f7f7f" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#s)"/>
+<text x="556" y="824" font-size="12" fill="#444">herança — o ator herda as funcionalidades do ator anterior</text>
+</svg>

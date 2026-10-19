@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1180" width="1720" height="1180" font-family="DejaVu Sans, Segoe UI, Arial, sans-serif">
+<defs><marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a5a5a"/></marker></defs>
+<rect width="1720" height="1180" fill="#ffffff"/>
+<text x="860.0" y="46" text-anchor="middle" font-size="27" font-weight="700" fill="#1f3864">DIAGRAMA DE COMUNICAÇÃO – PRIME MOTORS (Sistema de Compra de Veículos)</text>
+<text x="860.0" y="74" text-anchor="middle" font-size="16" fill="#444">Visão completa do ciclo de vida de uma compra de veículo</text>
+<line x1="458.0" y1="154.0" x2="1222.0" y2="154.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="840" y="118" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">1: consultarEstoque()</text>
+<line x1="1222.0" y1="154.0" x2="458.0" y2="154.0" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="840" y="232" text-anchor="middle" font-size="15" fill="#3a3a3a" font-weight="700">1.1: listarVeiculosDisponiveis()</text>
+<line x1="366.5" y1="218.0" x2="773.5" y2="512.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="430" y="300" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">2: iniciarCompra(veiculo, cliente)</text>
+<text x="430" y="322" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">3: escolherRecebimento(modalidade)</text>
+<text x="430" y="344" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">4: informarAgendamento(data, horario)</text>
+<text x="430" y="366" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">5: efetuarPagamento(forma)</text>
+<text x="430" y="388" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">6: confirmarCompra()</text>
+<line x1="943.7" y1="499.2" x2="1135.0" y2="415.2" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="1090" y="430" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">3.1: registrarEndereco(cep, uf)</text>
+<text x="1090" y="452" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">3.2: calcularFrete()</text>
+<line x1="1135.0" y1="415.2" x2="943.7" y2="499.2" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="1210" y="545" text-anchor="middle" font-size="15" fill="#3a3a3a" font-weight="700">3.3: informarFrete(valor)</text>
+<line x1="976.0" y1="621.2" x2="1104.9" y2="665.2" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="930" y="750" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">4.1: agendar(data, horario)</text>
+<line x1="1104.9" y1="665.2" x2="976.0" y2="621.2" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="1250" y="600" text-anchor="middle" font-size="15" fill="#3a3a3a" font-weight="700">4.2: confirmarAgendamento()</text>
+<line x1="864.0" y1="605.3" x2="907.5" y2="859.3" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="810" y="745" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">5.1: registrarPagamento(</text>
+<text x="810" y="767" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="400">        forma, valor)</text>
+<line x1="907.5" y1="859.3" x2="864.0" y2="605.3" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="960" y="765" text-anchor="start" font-size="15" fill="#3a3a3a" font-weight="700">5.2: confirmarPagamento()</text>
+<line x1="682.0" y1="576.0" x2="408.0" y2="576.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="545" y="462" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">2.1: definirStatus(“Iniciada”)</text>
+<text x="545" y="484" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">5.3: alterarStatus(“Paga”)</text>
+<text x="545" y="506" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">6.1: alterarStatus(“Concluída”)</text>
+<line x1="408.0" y1="576.0" x2="682.0" y2="576.0" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="545" y="622" text-anchor="middle" font-size="15" fill="#3a3a3a" font-weight="700">6.1.1: confirmarStatus()</text>
+<line x1="800.5" y1="608.0" x2="599.5" y2="852.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="760" y="800" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">6.2: gerarComprovante(codigo, data)</text>
+<line x1="906.5" y1="512.0" x2="1313.5" y2="218.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="1000" y="330" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">6.3: alterarStatus(“Vendido”)</text>
+<line x1="542.9" y1="852.0" x2="317.1" y2="218.0" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="392" y="468" text-anchor="end" font-size="15" fill="#3a3a3a" font-weight="700">7: notificarCompra(</text>
+<text x="392" y="490" text-anchor="end" font-size="15" fill="#3a3a3a" font-weight="400">     comprovante)</text>
+<line x1="1464.9" y1="962.0" x2="1385.1" y2="218.0" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="1390" y="840" text-anchor="end" font-size="15" fill="#1a1a1a" font-weight="700">8: gerenciarEstoque()</text>
+<line x1="1394.7" y1="973.4" x2="899.1" y2="619.4" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="1250" y="895" text-anchor="middle" font-size="15" fill="#1a1a1a" font-weight="700">9: acompanharPedidos()</text>
+<line x1="899.1" y1="619.4" x2="1394.7" y2="973.4" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="1270" y="955" text-anchor="middle" font-size="15" fill="#3a3a3a" font-weight="700">9.1: retornarRelatorio()</text>
+<rect x="150.0" y="130.0" width="300" height="80" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+<g stroke="#2e7d32" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(168.0,158.0)"><circle cx="11" cy="7" r="5" fill="#2e7d32" stroke="none"/><path d="M2 22c0-5 4-8 9-8s9 3 9 8" fill="#2e7d32" stroke="none"/></g>
+<text x="208.0" y="166" font-size="17.5" font-weight="700" fill="#1a1a1a">cliente:Usuario</text>
+<text x="208.0" y="189" font-size="13.5" fill="#555">(Cliente / Comprador)</text>
+<rect x="1230.0" y="130.0" width="300" height="80" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2.5"/>
+<g stroke="#1565c0" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(1248.0,158.0)"><path d="M2 16h20M4 16v-4l3-5h8l3 5v4"/><circle cx="7" cy="18" r="2.5" fill="#1565c0" stroke="none"/><circle cx="17" cy="18" r="2.5" fill="#1565c0" stroke="none"/></g>
+<text x="1288.0" y="166" font-size="17.5" font-weight="700" fill="#1a1a1a">veiculo:Veiculo</text>
+<text x="1288.0" y="189" font-size="13.5" fill="#555">(Estoque da Loja)</text>
+<rect x="690.0" y="520.0" width="300" height="80" rx="10" fill="#fff8e1" stroke="#f5a623" stroke-width="2.5"/>
+<g stroke="#f5a623" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(708.0,548.0)"><rect x="2" y="3" width="20" height="19" rx="3"/><path d="M7 9h10M7 13h10M7 17h6"/></g>
+<text x="748.0" y="556" font-size="17.5" font-weight="700" fill="#1a1a1a">compra:Compra</text>
+<text x="748.0" y="579" font-size="13.5" fill="#555">(Registro da Compra)</text>
+<rect x="100.0" y="520.0" width="300" height="80" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2.5"/>
+<g stroke="#1565c0" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(118.0,548.0)"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.5 12.5l3 3 6-6"/></g>
+<text x="158.0" y="556" font-size="17.5" font-weight="700" fill="#1a1a1a">status:StatusCompra</text>
+<text x="158.0" y="579" font-size="13.5" fill="#555">(Situação do Pedido)</text>
+<rect x="1105.0" y="340.0" width="290" height="80" rx="10" fill="#e0f7fa" stroke="#00838f" stroke-width="2.5"/>
+<g stroke="#00838f" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(1123.0,368.0)"><path d="M2 7h11v10H2zM13 10h4l4 4v3h-8z"/><circle cx="7" cy="19" r="2" fill="#00838f" stroke="none"/><circle cx="17" cy="19" r="2" fill="#00838f" stroke="none"/></g>
+<text x="1163.0" y="376" font-size="17.5" font-weight="700" fill="#1a1a1a">entrega:Entrega</text>
+<text x="1163.0" y="399" font-size="13.5" fill="#555">(Endereço e Frete)</text>
+<rect x="1100.0" y="660.0" width="300" height="80" rx="10" fill="#e0f7fa" stroke="#00838f" stroke-width="2.5"/>
+<g stroke="#00838f" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(1118.0,688.0)"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></g>
+<text x="1158.0" y="696" font-size="17.5" font-weight="700" fill="#1a1a1a">agendamento:Agendamento</text>
+<text x="1158.0" y="719" font-size="13.5" fill="#555">(Data e Horário)</text>
+<rect x="750.0" y="870.0" width="300" height="80" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2.5"/>
+<g stroke="#7b1fa2" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(768.0,898.0)"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></g>
+<text x="808.0" y="906" font-size="17.5" font-weight="700" fill="#1a1a1a">pagamento:Pagamento</text>
+<text x="808.0" y="929" font-size="13.5" fill="#555">(PIX / Boleto / Cartão)</text>
+<rect x="410.0" y="860.0" width="300" height="80" rx="10" fill="#eceff1" stroke="#546e7a" stroke-width="2.5"/>
+<g stroke="#546e7a" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(428.0,888.0)"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/></g>
+<text x="468.0" y="896" font-size="17.5" font-weight="700" fill="#1a1a1a">comprovante:Comprovante</text>
+<text x="468.0" y="919" font-size="13.5" fill="#555">(Documento da Compra)</text>
+<rect x="1310.0" y="970.0" width="320" height="80" rx="10" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
+<g stroke="#c62828" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(1328.0,998.0)"><circle cx="11" cy="7" r="5" fill="#c62828" stroke="none"/><path d="M2 22c0-5 4-8 9-8s9 3 9 8" fill="#c62828" stroke="none"/></g>
+<text x="1368.0" y="1006" font-size="17.5" font-weight="700" fill="#1a1a1a">admin:Administrador</text>
+<text x="1368.0" y="1029" font-size="13.5" fill="#555">(Equipe da Concessionária)</text>
+<rect x="40" y="948" width="480" height="210" rx="6" fill="#ffffff" stroke="#666" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="62" y="978" font-size="14.5" font-weight="700" fill="#1a1a1a">PRINCIPAIS REQUISITOS ATENDIDOS</text>
+<text x="62" y="1004" font-size="12.5" fill="#333">• RF03 – Listagem dos veículos disponíveis</text>
+<text x="62" y="1022" font-size="12.5" fill="#333">• RF04 – Detalhamento do veículo</text>
+<text x="62" y="1040" font-size="12.5" fill="#333">• RF05 / RF06 – Início da compra e dados do cliente</text>
+<text x="62" y="1058" font-size="12.5" fill="#333">• RF07 / RF08 – Retirada ou entrega e cálculo do frete</text>
+<text x="62" y="1076" font-size="12.5" fill="#333">• RF09 – Agendamento de data e horário</text>
+<text x="62" y="1094" font-size="12.5" fill="#333">• RF10 a RF14 – Pagamento e registro do status</text>
+<text x="62" y="1112" font-size="12.5" fill="#333">• RF15 – Geração do comprovante</text>
+<text x="62" y="1130" font-size="12.5" fill="#333">• RF16 / RF17 – Administração do estoque e dos pedidos</text>
+<text x="62" y="1148" font-size="12.5" fill="#333">• RF18 – Veículo alterado para vendido</text>
+<line x1="600" y1="1080" x2="666" y2="1080" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ap)"/>
+<text x="678" y="1085" font-size="13.5" fill="#333">chamada de mensagem</text>
+<line x1="600" y1="1110" x2="666" y2="1110" stroke="#5a5a5a" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ar)"/>
+<text x="678" y="1115" font-size="13.5" fill="#333">retorno / resposta</text>
+</svg>
