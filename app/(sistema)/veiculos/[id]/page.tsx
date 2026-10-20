@@ -9,7 +9,6 @@ import {
   Calendar,
   Fuel,
   Gauge,
-  Heart,
   MessageCircle,
   Palette,
   Pencil,
@@ -123,12 +122,6 @@ export default function DetalheVeiculo({
               {moeda(veiculo.preco)}
             </p>
           </div>
-          <button
-            aria-label="Favoritar"
-            className="rounded-full border border-[color:var(--pm-border)] p-2"
-          >
-            <Heart size={16} />
-          </button>
         </div>
 
         <p className="mt-3 text-xs leading-relaxed text-[color:var(--pm-muted)]">
