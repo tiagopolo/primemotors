@@ -145,8 +145,10 @@ Rotas da API:
 7. Cadastrar/editar veículo (`/cadastrar`) — somente administrador
 8. Finalizar compra (`/comprar/[id]`)
 9. Comprovante (`/comprovante/[id]`)
-10. Relatórios (`/relatorios`)
-11. Configurações (`/configuracoes`)
+10. Minhas Compras (`/minhas-compras`) — só os próprios pedidos do cliente
+11. Vendas (`/vendas`) — somente administrador; pedidos de todos os clientes
+12. Relatórios (`/relatorios`)
+13. Configurações (`/configuracoes`)
 
 ## 12. Descrição das funcionalidades
 
@@ -156,7 +158,7 @@ Rotas da API:
 - **Pagamento (RF10 a RF14, RN07):** PIX mostra a chave; boleto gera a linha digitável; cartão guarda apenas os quatro últimos dígitos (RNF03).
 - **Conclusão (RF15, RF18, RN03, RN08):** ao confirmar, o pedido vira "concluída", o comprovante é emitido uma única vez e o veículo sai do estoque.
 - **Estoque administrativo (RF16, RN10):** o administrador cadastra, edita e remove veículos. Um veículo que já tem pedido não pode ser removido (409), para preservar o histórico de vendas.
-- **Cancelamento de venda (RN13):** só o administrador cancela, e só uma venda já concluída (a API recusa com 409 fora desse caso). Ao cancelar, o veículo volta a ficar disponível no estoque e some das métricas de faturamento do relatório. A tela "Compras" (`/minhas-compras`) mostra os pedidos de **todos os clientes** quando quem está logado é o administrador — com busca por veículo ou cliente — e não só os próprios pedidos (que é o que o cliente comum vê).
+- **Cancelamento de venda (RN13):** o campo **Vendas** (`/vendas`) só aparece no menu para o administrador (RNF07) — lista os pedidos de **todos os clientes**, com o nome de quem comprou e busca por veículo/cliente, e é o único lugar com o botão "Cancelar venda". A API também recusa (409) cancelar fora de uma venda concluída. Ao cancelar, o veículo volta a ficar disponível no estoque e some das métricas de faturamento do relatório. O cliente não tem — e não vê — nenhuma opção de cancelamento: a tela dele, "Minhas Compras" (`/minhas-compras`), mostra só os próprios pedidos, sem esse botão.
 - **Histórico (RN11):** toda mudança de status é registrada com data e hora.
 
 ## 13. Dificuldades encontradas

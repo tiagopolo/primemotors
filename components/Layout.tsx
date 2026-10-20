@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   Bell,
   BarChart3,
+  BadgeDollarSign,
   Car,
   ChevronLeft,
   Home,
@@ -36,6 +37,7 @@ const NAV = [
   { href: "/veiculos", rotulo: "Veículos", Icone: Car, somenteAdmin: false },
   { href: "/minhas-compras", rotulo: "Compras", Icone: Receipt, somenteAdmin: false },
   { href: "/cadastrar", rotulo: "Cadastro", Icone: PlusCircle, somenteAdmin: true },
+  { href: "/vendas", rotulo: "Vendas", Icone: BadgeDollarSign, somenteAdmin: true },
   { href: "/relatorios", rotulo: "Relatórios", Icone: BarChart3, somenteAdmin: true },
   { href: "/configuracoes", rotulo: "Configurações", Icone: Settings, somenteAdmin: false },
 ];

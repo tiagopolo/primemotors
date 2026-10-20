@@ -1,24 +1,22 @@
 "use client";
 
 /**
- * Tela "Compras" — RF17.
+ * Tela "Minhas Compras" — RF17.
+ * Lista os pedidos do cliente autenticado e dá acesso ao andamento/extrato
+ * de cada um (reaproveita a tela de comprovante, que já mostra o histórico
+ * de status, o pagamento e a entrega/retirada do pedido).
  *
- * Para o cliente: lista os próprios pedidos e dá acesso ao andamento/extrato
- * de cada um (reaproveita a tela de comprovante).
- *
- * Para o administrador: lista as compras de **todos os clientes**, com o
- * nome de quem comprou, busca por veículo/cliente e o cancelamento de
- * qualquer venda concluída direto na lista (RN13) — sem precisar entrar
- * pedido por pedido.
+ * Esta tela nunca mostra opção de cancelamento — cancelar uma venda é só
+ * do administrador, na tela "Vendas" (app/(sistema)/vendas).
  */
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, ChevronRight, Receipt, Search } from "lucide-react";
+import { useMemo } from "react";
+import { ChevronRight, Receipt } from "lucide-react";
 import { useApp } from "@/lib/store";
 import { dataBR, moedaCheia } from "@/lib/utils";
 import { Titulo } from "@/components/Layout";
-import type { Compra, StatusCompra } from "@/lib/types";
+import type { StatusCompra } from "@/lib/types";
 
 const ROTULO_STATUS: Record<StatusCompra, string> = {
   iniciada: "Iniciada",
@@ -39,94 +37,29 @@ const COR_STATUS: Record<StatusCompra, string> = {
 };
 
 export default function MinhasCompras() {
-  const { usuario, compras, cancelarVenda } = useApp();
-  const admin = usuario?.perfil === "admin";
-  const [nomesPorId, setNomesPorId] = useState<Record<string, string>>({});
-  const [busca, setBusca] = useState("");
-  const [cancelandoId, setCancelandoId] = useState<string | null>(null);
-  const [erro, setErro] = useState("");
+  const { usuario, compras } = useApp();
 
-  // Só o admin vê a lista de todos os clientes; busca uma vez para
-  // mostrar o nome de quem comprou em cada pedido.
-  useEffect(() => {
-    if (!admin) return;
-    let cancelado = false;
-    fetch("/api/usuarios")
-      .then((r) => r.json())
-      .then((lista: { id: string; nome: string }[]) => {
-        if (cancelado) return;
-        setNomesPorId(Object.fromEntries(lista.map((u) => [u.id, u.nome])));
-      })
-      .catch(() => {
-        /* não é crítico: sem os nomes, a lista ainda funciona com o id */
-      });
-    return () => {
-      cancelado = true;
-    };
-  }, [admin]);
-
-  const lista = useMemo(() => {
-    const base = admin ? compras : compras.filter((c) => c.usuarioId === usuario?.id);
-    const termo = busca.trim().toLowerCase();
-    const filtrada = termo
-      ? base.filter((c) => {
-          const cliente = nomesPorId[c.usuarioId] ?? "";
-          return `${c.veiculoDescricao} ${cliente}`.toLowerCase().includes(termo);
-        })
-      : base;
-    return [...filtrada].sort((a, b) => b.criadaEm.localeCompare(a.criadaEm));
-  }, [compras, usuario, admin, busca, nomesPorId]);
-
-  async function cancelar(c: Compra) {
-    if (!confirm(`Cancelar a venda de ${c.veiculoDescricao}? O veículo volta para o estoque.`))
-      return;
-    setErro("");
-    setCancelandoId(c.id);
-    const r = await cancelarVenda(c.id);
-    setCancelandoId(null);
-    if (!r.ok) setErro(r.erro);
-  }
+  const minhas = useMemo(
+    () =>
+      compras
+        .filter((c) => c.usuarioId === usuario?.id)
+        .sort((a, b) => b.criadaEm.localeCompare(a.criadaEm)),
+    [compras, usuario],
+  );
 
   return (
     <>
       <Titulo
-        titulo={admin ? "Compras dos Clientes" : "Minhas Compras"}
-        subtitulo={
-          admin
-            ? "Acompanhe e, se precisar, cancele a venda de qualquer cliente"
-            : "Acompanhe o andamento e o extrato dos seus pedidos"
-        }
+        titulo="Minhas Compras"
+        subtitulo="Acompanhe o andamento e o extrato dos seus pedidos"
       />
 
-      {admin && (
-        <div className="pm-card mb-4 flex items-center gap-2 p-3">
-          <Search size={18} className="text-[color:var(--pm-muted)]" />
-          <input
-            className="pm-input border-0 bg-transparent p-0 focus:shadow-none"
-            placeholder="Buscar por veículo ou cliente..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
-        </div>
-      )}
-
-      {erro && (
-        <p className="pm-card mb-4 p-3 text-center text-xs font-semibold text-[color:var(--pm-danger)]">
-          {erro}
-        </p>
-      )}
-
       <ul className="space-y-3">
-        {lista.map((c) => (
+        {minhas.map((c) => (
           <li key={c.id} className="pm-card p-3">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <h3 className="truncate text-sm font-bold">{c.veiculoDescricao}</h3>
-                {admin && (
-                  <p className="truncate text-[11px] font-semibold text-[color:var(--pm-primary-2)]">
-                    {nomesPorId[c.usuarioId] ?? "Cliente"}
-                  </p>
-                )}
                 <p className="mt-0.5 text-[11px] text-[color:var(--pm-muted)]">
                   Pedido em {dataBR(c.criadaEm)}
                 </p>
@@ -151,26 +84,13 @@ export default function MinhasCompras() {
             >
               <Receipt size={14} /> Ver andamento / extrato <ChevronRight size={14} />
             </Link>
-
-            {admin && c.status === "concluida" && (
-              <button
-                onClick={() => cancelar(c)}
-                disabled={cancelandoId === c.id}
-                className="pm-btn pm-btn-ghost mt-2 w-full py-1.5 text-xs text-[color:var(--pm-danger)]"
-              >
-                <AlertTriangle size={14} />
-                {cancelandoId === c.id ? "Cancelando…" : "Cancelar venda"}
-              </button>
-            )}
           </li>
         ))}
       </ul>
 
-      {lista.length === 0 && (
+      {minhas.length === 0 && (
         <p className="pm-card p-8 text-center text-sm text-[color:var(--pm-muted)]">
-          {admin
-            ? "Nenhuma compra encontrada."
-            : "Você ainda não tem nenhuma compra. Escolha um veículo em Estoque para começar."}
+          Você ainda não tem nenhuma compra. Escolha um veículo em Estoque para começar.
         </p>
       )}
     </>
