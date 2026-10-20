@@ -7,7 +7,7 @@
 --   2. Cole este arquivo inteiro
 --   3. Clique em Run
 --
--- O Supabase já cria o banco pra você (schema "public", dentro do projeto) —
+-- O Supabase já cria o banco (schema "public", dentro do projeto) —
 -- por isso este script não tem CREATE DATABASE nem USE, diferente de um
 -- script MySQL. É só colar e rodar.
 -- =====================================================================
